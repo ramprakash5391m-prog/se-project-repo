@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sports Shop Management System</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6f1;--sf:#fff;--tx:#14213d;--mu:#5b667a;--ln:#d9ded3;--ac:#d7e84a;--g:#1f5f3b;--bad:#b3261e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1626;--sf:#18223a;--tx:#eef1f6;--mu:#9aa5bb;--ln:#2a3654;--g:#7fd1a0;--bad:#ff8a80}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:500 16px/1.5 Barlow,system-ui,sans-serif}
+h1,h2,h3{font-family:'Barlow Condensed',Impact,sans-serif;margin:0;letter-spacing:.2px}
+header{background:#14213d;color:#fff;display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:12px 20px}
+header h1{font-size:26px;flex:1;min-width:200px}header h1 span{background:var(--ac);color:#14213d;padding:0 8px;margin-right:6px}
+nav{display:flex;gap:4px;flex-wrap:wrap;padding:10px 20px;background:var(--sf);border-bottom:1px solid var(--ln)}
+button,select,input{font:inherit;color:inherit}
+nav button{background:none;border:0;padding:8px 14px;border-radius:4px;cursor:pointer;font-weight:600}
+nav button.on{background:var(--ac);color:#14213d}
+main{max-width:1050px;margin:0 auto;padding:20px}
+.btn{background:#14213d;color:#fff;border:0;border-radius:4px;padding:9px 16px;cursor:pointer;font-weight:600}
+.btn.alt{background:var(--ac);color:#14213d}.btn.sm{padding:5px 10px;font-size:14px}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--g);outline-offset:2px}
+input,select{background:var(--sf);border:1px solid var(--ln);border-radius:4px;padding:8px 10px;width:100%}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.row>*{flex:1;min-width:140px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:6px;padding:14px}
+.card h3{font-size:21px}.price{font-weight:700;font-size:18px}.mu{color:var(--mu);font-size:14px}
+.tag{display:inline-block;font-size:13px;padding:1px 8px;border-radius:10px;background:var(--ln)}
+.low{color:var(--bad);font-weight:600}
+.wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;background:var(--sf)}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--ln);font-size:15px}th{font-family:'Barlow Condensed',sans-serif;font-size:17px}
+.two{display:grid;grid-template-columns:2fr 1fr;gap:18px}@media(max-width:760px){.two{grid-template-columns:1fr}}
+.stat{font:700 38px 'Barlow Condensed',sans-serif}
+.msg{padding:10px 14px;border-radius:4px;margin-bottom:14px;background:var(--ac);color:#14213d}.msg.err{background:var(--bad);color:#fff}
+.login{max-width:420px;margin:50px auto}.login label{display:block;margin:10px 0 4px}
+:root{--bg:#f5f6fb;--sf:#fff;--tx:#0f172a;--mu:#64748b;--ln:#e5e7f0;--ac:#4f46e5;--ac2:#10b981;--g:#4f46e5;--bad:#e11d48;--sh:0 1px 2px rgba(15,23,42,.05),0 8px 24px rgba(15,23,42,.06)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0b1020;--sf:#141a2e;--tx:#e8ecf8;--mu:#94a0bd;--ln:#242c47;--ac:#818cf8;--ac2:#34d399;--g:#818cf8;--bad:#fb7185;--sh:0 8px 24px rgba(0,0,0,.35)}}
+body{font-family:Inter,system-ui,sans-serif;font-size:15px;background:radial-gradient(900px 400px at 85% -100px,rgba(79,70,229,.12),transparent),var(--bg);min-height:100vh}
+h1,h2,h3,th,.stat{font-family:Inter,system-ui,sans-serif;font-weight:700;letter-spacing:-.02em}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--sf) 80%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--tx);border-bottom:1px solid var(--ln);padding:12px 24px}
+header h1{font-size:20px;font-weight:800}header h1 span{background:linear-gradient(135deg,#4f46e5,#10b981);color:#fff;border-radius:8px;padding:3px 10px;margin-right:8px;font-size:15px}
+header>div{font-size:13px;font-weight:600;background:var(--bg);border:1px solid var(--ln);padding:5px 12px;border-radius:99px;color:var(--mu)}
+nav{background:transparent;border:0;padding:16px 24px 0;max-width:1050px;margin:0 auto;gap:6px}
+nav button{border-radius:99px;color:var(--mu);padding:8px 16px;font-size:14px;transition:background .15s,color .15s}
+nav button:hover{background:var(--sf);color:var(--tx)}
+nav button.on{background:var(--ac);color:#fff;box-shadow:0 4px 14px rgba(79,70,229,.35)}
+main{padding:20px 24px 48px}main h2{font-size:28px!important;font-weight:800}
+.btn{background:var(--tx);color:var(--sf);border-radius:10px;padding:10px 18px;font-weight:600;transition:transform .12s,box-shadow .12s}
+.btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 16px rgba(15,23,42,.18)}.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.alt{background:var(--ac);color:#fff}.btn.sm{padding:6px 12px;border-radius:8px}
+input,select{border-radius:10px;padding:10px 12px;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus{border-color:var(--ac);box-shadow:0 0 0 4px color-mix(in srgb,var(--ac) 18%,transparent);outline:0}
+.card{border-radius:16px;box-shadow:var(--sh);padding:18px;border-color:transparent}
+.grid .card{transition:transform .15s,box-shadow .15s}.grid .card:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(79,70,229,.16)}
+.ico{height:96px;border-radius:12px;margin-bottom:12px;display:grid;place-items:center;font-size:46px;background:linear-gradient(135deg,color-mix(in srgb,var(--ac) 14%,var(--sf)),color-mix(in srgb,var(--ac2) 16%,var(--sf)))}
+.tag{background:color-mix(in srgb,var(--ac) 12%,transparent);color:var(--ac);font-weight:600;border-radius:99px;padding:2px 10px}
+.card h3{font-size:17px;margin:6px 0 2px}.price{font-size:20px;font-weight:800}
+table{border-radius:14px;overflow:hidden;box-shadow:var(--sh)}th{font-size:13px;color:var(--mu);background:color-mix(in srgb,var(--bg) 60%,var(--sf));font-weight:600}
+tr:last-child td{border-bottom:0}tbody tr:hover td{background:color-mix(in srgb,var(--ac) 5%,transparent)}
+.stat{font-size:36px;font-weight:800;background:linear-gradient(135deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.msg{border-radius:12px;background:color-mix(in srgb,var(--ac2) 16%,var(--sf));color:var(--tx);border:1px solid color-mix(in srgb,var(--ac2) 40%,transparent)}
+.msg.err{background:color-mix(in srgb,var(--bad) 12%,var(--sf));color:var(--bad);border-color:color-mix(in srgb,var(--bad) 40%,transparent)}
+.two>div:last-child,.two>.card:last-child{position:sticky;top:76px;align-self:start}
+.login{margin:8vh auto;padding:32px;text-align:center}.login label{text-align:left}.login p.mu{text-align:left}
+.logo{width:56px;height:56px;margin:0 auto 12px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:linear-gradient(135deg,#4f46e5,#10b981);box-shadow:0 10px 24px rgba(79,70,229,.35)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div id="app"></div>
+<script>
+const ROLES={Customer:['Shop','Cart','My Orders'],'Shop Staff':['Record Sale','Products','Inventory'],'Shop Manager':['Reports','Inventory','Orders'],Administrator:['Manage Products','Suppliers','Orders']};
+const S={user:null,tab:'',msg:'',err:false,q:'',cat:'All',cart:{},sup:[],products:[],orders:[]};
+const $=id=>document.getElementById(id),R=n=>'₹'+n.toLocaleString('en-IN'),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const flash=(m,e)=>{S.msg=m;S.err=!!e};
+const ic=c=>({Cricket:'🏏',Football:'⚽',Badminton:'🏸',Fitness:'🏋️',Tennis:'🎾'}[c]||'🏅');
+const disc=sub=>sub>=5000?Math.round(sub*.15):sub>=2500?Math.round(sub*.10):0;
+const P=id=>S.products.find(p=>p.id==id);
+async function api(m,u,b){const r=await fetch(u,{method:m,headers:{'Content-Type':'application/json'},body:b?JSON.stringify(b):undefined});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||'Something went wrong.');return d}
+async function load(){const d=await api('GET','/api/data');S.products=d.products;S.sup=d.suppliers;S.orders=d.orders}
+async function act(fn,ok){try{await fn();await load();flash(ok)}catch(e){flash(e.message,1)}render()}
+async function login(){try{const d=await api('POST','/api/login',{username:$('u').value.trim(),password:$('pw').value});S.user=d;S.tab=ROLES[d.role][0];await load();S.msg=''}catch(e){flash(e.message,1)}render()}
+async function logout(){try{await api('POST','/api/logout')}catch(e){}S.user=null;S.cart={};S.msg='';render()}
+function add(id){const p=P(id),c=S.cart[id]||0;if(c>=p.s)return flash('Only '+p.s+' of '+p.n+' in stock.',1),render();S.cart[id]=c+1;flash(p.n+' added to cart.');render()}
+function chg(id,d){const n=(S.cart[id]||0)+d;if(n<=0)delete S.cart[id];else if(n>P(id).s)return flash('Not enough stock.',1),render();else S.cart[id]=n;S.msg='';render()}
+async function place(cust){const ids=Object.keys(S.cart);if(!ids.length)return flash('Cart is empty.',1),render();
+ try{const o=await api('POST','/api/orders',{customer:cust,items:ids.map(i=>({id:+i,q:S.cart[i]}))});S.cart={};await load();flash('Order #'+o.id+' saved. Total '+R(o.tot)+'. Stock updated.');if(S.user.role=='Customer')S.tab='My Orders'}catch(e){flash(e.message,1)}render()}
+function stock(id,v){const n=P(id).n;act(()=>api('PUT','/api/products/'+id+'/stock',{stock:+v||0}),'Stock updated for '+n+'.')}
+function addP(){const n=$('pn').value.trim(),c=$('pc').value.trim(),p=+$('pp').value,s=+$('ps').value;
+ if(!n||!c||!(p>0)||s<0||isNaN(s))return flash('Enter a name, category, price above 0 and stock.',1),render();
+ act(()=>api('POST','/api/products',{name:n,category:c,price:p,stock:s}),n+' added.')}
+function delP(id){act(()=>api('DELETE','/api/products/'+id),'Product removed.')}
+function setStatus(id,v){act(()=>api('PUT','/api/orders/'+id+'/status',{status:v}),'Order #'+id+' marked '+v+'.')}
+function addSup(){const n=$('sn').value.trim();if(!n)return flash('Enter a supplier name.',1),render();act(()=>api('POST','/api/suppliers',{name:n,supplies:$('sc').value.trim()}),'Supplier added.')}
+const cats=()=>['All',...new Set(S.products.map(p=>p.c))];
+function catalog(buy){const l=S.products.filter(p=>(S.cat=='All'||p.c==S.cat)&&p.n.toLowerCase().includes(S.q.toLowerCase()));
+ return `<div class=row><input id=q placeholder="Search products" value="${esc(S.q)}" oninput="S.q=this.value;render(1)" aria-label="Search products"><select onchange="S.cat=this.value;render()" aria-label="Category">${cats().map(c=>`<option ${c==S.cat?'selected':''}>${esc(c)}</option>`).join('')}</select></div>
+ <div class=grid>${l.map(p=>`<div class=card><div class=ico>${ic(p.c)}</div><span class=tag>${esc(p.c)}</span><h3>${esc(p.n)}</h3><div class=price>${R(p.p)}</div>
+ <div class="mu ${p.s<=5?'low':''}">${p.s?p.s+' in stock'+(p.s<=5?' (low)':''):'Out of stock'}</div>
+ ${buy?`<button class="btn sm" style="margin-top:8px" ${p.s?'':'disabled'} onclick="add(${p.id})">Add to cart</button>`:''}</div>`).join('')||'<p class=mu>No products match. Try another word or category.</p>'}</div>`}
+function cartV(staff){const ids=Object.keys(S.cart);const sub=ids.reduce((a,i)=>a+S.cart[i]*P(i).p,0),d=disc(sub);
+ return `<div class=card><h3>${staff?'Current sale':'Your cart'}</h3>${ids.length?`<table>${ids.map(i=>`<tr><td>${esc(P(i).n)}</td><td><button class="btn sm" onclick="chg(${i},-1)" aria-label="Less">−</button> ${S.cart[i]} <button class="btn sm" onclick="chg(${i},1)" aria-label="More">+</button></td><td>${R(S.cart[i]*P(i).p)}</td></tr>`).join('')}</table>`:'<p class=mu>Nothing here yet. Add a product to begin.</p>'}
+ <p>Subtotal: ${R(sub)}<br>Discount: ${R(d)} <span class=mu>(10% from ₹2,500, 15% from ₹5,000)</span><br><b class=price>Total: ${R(sub-d)}</b></p>
+ ${staff?'<input id=cn placeholder="Customer name" aria-label="Customer name" style="margin-bottom:8px">':''}
+ <button class="btn alt" onclick="place(${staff?"$('cn').value.trim()||'Walk-in'":"S.user.name"})">${staff?'Confirm sale':'Place order'}</button></div>`}
+function ordersT(own,edit){const l=own?S.orders.filter(o=>o.by=='Customer'):S.orders;
+ return `<div class=wrap><table><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th></tr>${l.map(o=>`<tr><td>#${o.id}</td><td>${esc(o.cust)}</td><td>${o.items.map(i=>esc(i.n)+' × '+i.q).join(', ')}</td><td>${R(o.tot)}</td><td>${edit?`<select onchange="setStatus(${o.id},this.value)" aria-label="Status">${['Placed','Completed','Delivered','Cancelled'].map(s=>`<option ${s==o.t?'selected':''}>${s}</option>`).join('')}</select>`:o.t}</td></tr>`).join('')||'<tr><td colspan=5 class=mu>No orders yet.</td></tr>'}</table></div>`}
+function invT(edit){return `<div class=wrap><table><tr><th>Product</th><th>Category</th><th>Stock</th><th>Status</th></tr>${S.products.map(p=>`<tr><td>${esc(p.n)}</td><td>${esc(p.c)}</td><td>${edit?`<input type=number min=0 value=${p.s} style="width:90px" onchange="stock(${p.id},this.value)" aria-label="Stock for ${esc(p.n)}">`:p.s}</td><td class="${p.s<=5?'low':''}">${p.s==0?'Out of stock':p.s<=5?'Low stock':'Available'}</td></tr>`).join('')}</table></div>`}
+function reports(){const t=S.orders.filter(o=>o.t!='Cancelled');const rev=t.reduce((a,o)=>a+o.tot,0),units={};t.forEach(o=>o.items.forEach(i=>units[i.n]=(units[i.n]||0)+i.q));
+ const top=Object.entries(units).sort((a,b)=>b[1]-a[1]).slice(0,5);const low=S.products.filter(p=>p.s<=5);
+ return `<div class=row><div class=card><div class=mu>Total sales</div><div class=stat>${R(rev)}</div></div><div class=card><div class=mu>Orders</div><div class=stat>${t.length}</div></div><div class=card><div class=mu>Low-stock items</div><div class=stat>${low.length}</div></div></div>
+ <div class=row><div class=card><h3>Best sellers</h3>${top.map(([n,q])=>`<div>${esc(n)} — ${q} sold</div>`).join('')||'<span class=mu>No sales yet.</span>'}</div><div class=card><h3>Reorder soon</h3>${low.map(p=>`<div>${esc(p.n)} — ${p.s} left</div>`).join('')||'<span class=mu>All stocked.</span>'}</div></div>`}
+function manage(){return `<div class=card style="margin-bottom:16px"><h3>Add product</h3><div class=row style="margin-top:8px"><input id=pn placeholder="Name"><input id=pc placeholder="Category" list=cl><datalist id=cl>${cats().slice(1).map(c=>`<option>${esc(c)}`).join('')}</datalist><input id=pp type=number min=1 placeholder="Price ₹"><input id=ps type=number min=0 placeholder="Stock"><button class="btn alt" style="flex:0" onclick="addP()">Add product</button></div></div>
+ <div class=wrap><table><tr><th>Product</th><th>Category</th><th>Price</th><th></th></tr>${S.products.map(p=>`<tr><td>${esc(p.n)}</td><td>${esc(p.c)}</td><td>${R(p.p)}</td><td><button class="btn sm" onclick="delP(${p.id})">Remove</button></td></tr>`).join('')}</table></div>`}
+function sups(){return `<div class=row><input id=sn placeholder="Supplier name"><input id=sc placeholder="Supplies (e.g. Cricket)"><button class="btn alt" style="flex:0" onclick="addSup()">Add supplier</button></div><div class=wrap><table><tr><th>Supplier</th><th>Supplies</th></tr>${S.sup.map(s=>`<tr><td>${esc(s.n)}</td><td>${esc(s.c)}</td></tr>`).join('')}</table></div>`}
+function view(){const t=S.tab;
+ if(t=='Shop')return `<div class=two><div>${catalog(1)}</div>${cartV(0)}</div>`;
+ if(t=='Cart')return cartV(0);
+ if(t=='My Orders')return ordersT(1,0);
+ if(t=='Record Sale')return `<div class=two><div>${catalog(1)}</div>${cartV(1)}</div>`;
+ if(t=='Products')return catalog(0);
+ if(t=='Inventory')return invT(S.user.role=='Shop Staff'||S.user.role=='Administrator');
+ if(t=='Reports')return reports();
+ if(t=='Orders')return ordersT(0,S.user.role=='Administrator');
+ if(t=='Manage Products')return manage();
+ if(t=='Suppliers')return sups()}
+function render(keep){
+ if(!S.user){$('app').innerHTML=`<div class="card login"><div class=logo>🏅</div><h1 style="font-size:26px">Sports Shop</h1><p class=mu style="text-align:center">Sign in to continue.</p>${S.msg?`<div class="msg err" role=alert>${S.msg}</div>`:''}
+ <label for=u>Username</label><input id=u autocomplete=off><label for=pw>Password</label><input id=pw type=password onkeydown="if(event.key=='Enter')login()"><br><br><button class="btn alt" onclick="login()">Log in</button>
+ <p class=mu>Demo accounts (username / password):<br>customer / cust123<br>staff / staff123<br>manager / mgr123<br>admin / admin123</p></div>`;return}
+ const f=document.activeElement,id=f&&f.id,pos=f&&f.selectionStart;
+ $('app').innerHTML=`<header><h1><span>SPORTS SHOP</span>Management System</h1><div>${S.user.role}</div><button class="btn alt" onclick="logout()">Log out</button></header>
+ <nav>${ROLES[S.user.role].map(t=>`<button class="${t==S.tab?'on':''}" onclick="S.tab='${t}';S.msg='';render()">${t}</button>`).join('')}</nav>
+ <main>${S.msg?`<div class="msg ${S.err?'err':''}" role=status>${S.msg}</div>`:''}<h2 style="font-size:30px;margin-bottom:14px">${S.tab}</h2>${view()}</main>`;
+ if(keep&&id&&$(id)){$(id).focus();try{$(id).setSelectionRange(pos,pos)}catch(e){}}}
+(async()=>{try{const d=await api('GET','/api/me');S.user=d;S.tab=ROLES[d.role][0];await load()}catch(e){}render()})();
+</script></body></html>
